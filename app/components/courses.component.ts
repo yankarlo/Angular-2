@@ -1,16 +1,11 @@
 import {Component} from '@angular/core';
 
-export interface Course{
-  id: number,
-  name: string,
-  image: string,
-  price: number
-}
+import{Course} from '../common/course';
 
 const COURSES: Course[] =[
  {
     id : 1,
-    name : 'Angular 2',
+    name : 'Angular ',
     image : '/artefactos/angularjs.png',
     price : 100
   },
@@ -29,14 +24,10 @@ const COURSES: Course[] =[
   `
     <h2>{{title}}</h2>
     <div class="courses_list">
-      <div class="course" *ngFor="let course of courses">
-        <img [src]="course.image">
-        <h2>{{course.name}}</h2>
-        <span class="price">
-          {{course.price | currency : 'USD': true :'1.2-2'}}
-        </span>
-        <button>Agregar al carrito</button>
-      </div>
+        <coursebox
+        [course]="course_info"
+        *ngFor="let course_info of courses"
+        ></coursebox>
     </div>
   `
 })

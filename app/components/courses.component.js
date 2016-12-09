@@ -12,7 +12,7 @@ var core_1 = require('@angular/core');
 var COURSES = [
     {
         id: 1,
-        name: 'Angular 2',
+        name: 'Angular ',
         image: '/artefactos/angularjs.png',
         price: 100
     },
@@ -31,7 +31,7 @@ var CoursesComponent = (function () {
     CoursesComponent = __decorate([
         core_1.Component({
             selector: 'courses',
-            template: "\n    <h2>{{title}}</h2>\n    <div class=\"courses_list\">\n      <div class=\"course\" *ngFor=\"let course of courses\">\n        <img [src]=\"course.image\">\n        <h2>{{course.name}}</h2>\n        <span class=\"price\">\n          {{course.price | currency : 'USD': true :'1.2-2'}}\n        </span>\n        <button>Agregar al carrito</button>\n      </div>\n    </div>\n  "
+            template: "\n    <h2>{{title}}</h2>\n    <div class=\"courses_list\">\n        <coursebox\n        [course]=\"course_info\"\n        *ngFor=\"let course_info of courses\"\n        ></coursebox>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], CoursesComponent);
