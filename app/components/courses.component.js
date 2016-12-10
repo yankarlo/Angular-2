@@ -23,6 +23,7 @@ var COURSES = [
         price: 120
     }
 ];
+// En el div se emplea entre corchetes la variable definida en coursebox
 var CoursesComponent = (function () {
     function CoursesComponent() {
         this.title = 'Cursos disponibles';

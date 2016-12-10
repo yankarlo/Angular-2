@@ -9,9 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var cart_service_1 = require('../services/cart.service');
 var CourseBoxComponent = (function () {
-    function CourseBoxComponent() {
+    function CourseBoxComponent(CartService) {
+        this.CartService = CartService;
     }
+    CourseBoxComponent.prototype.add = function (course) {
+        this.CartService.addToCart(course);
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
@@ -19,9 +24,9 @@ var CourseBoxComponent = (function () {
     CourseBoxComponent = __decorate([
         core_1.Component({
             selector: 'coursebox',
-            template: "\n        <div class=\"course\" >\n            <img [src]=\"course.image\">\n            <h2>{{course.name}}</h2>\n            <span class=\"price\">\n            {{course.price | currency : 'USD': true :'1.2-2'}}\n            </span>\n            <button>Agregar al carrito</button>\n        </div>\n    "
+            template: "\n        <div class=\"course\" >\n            <img [src]=\"course.image\">\n            <h2>{{course.name}}</h2>\n            <span class=\"price\">\n                {{course.price | currency : 'USD': true :'1.2-2'}}\n            </span>\n            <button (click)=\"add(course)\" >Agregar al carrito</button>\n        </div>\n    "
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [cart_service_1.CartService])
     ], CourseBoxComponent);
     return CourseBoxComponent;
 }());
