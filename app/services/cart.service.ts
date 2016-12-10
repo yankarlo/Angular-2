@@ -38,4 +38,4 @@ export class CartService {
         this.detail.total += course.price;
         this.detail.items += 1;
     }
-}
+};

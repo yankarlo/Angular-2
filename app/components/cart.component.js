@@ -34,4 +34,5 @@ var CartComponent = (function () {
     return CartComponent;
 }());
 exports.CartComponent = CartComponent;
+;
 //# sourceMappingURL=cart.component.js.map

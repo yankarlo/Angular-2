@@ -21,7 +21,7 @@ const COURSES: Course[] =[
 // En el div se emplea entre corchetes la variable definida en coursebox
 @Component({
   selector: 'courses',
-  template : 
+  template :
   `
     <h2>{{title}}</h2>
     <div class="courses_list">
@@ -30,6 +30,7 @@ const COURSES: Course[] =[
         *ngFor="let course_info of courses"
         ></coursebox>
     </div>
+    <cart></cart>
   `,
   providers: [ApiService]
 })
@@ -46,9 +47,10 @@ export class CoursesComponent implements OnInit {
   getCourses() {
     this.ApiService.getCourses().then(
       courses => this.courses = courses
-    )
-  } 
-  ngOnInit() { 
+    );
+  }
+  ngOnInit() {
     this.getCourses();
   }
 }
+

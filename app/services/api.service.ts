@@ -22,8 +22,13 @@ export class ApiService {
     getCoursesSlow(): Promise<Course[]> {
         return new Promise<Course[]>(
             resolve => setTimeout(resolve, 2000))
-            .then( ()=> this.getCourses());
+            .then( () => this.getCourses());
 
+    }
+
+    getCourse(id: number) {
+        return this.getCourses()
+        .then( courses => courses.find( (course: any) => course.id === id));
     }
     // Control de error de peticion
 

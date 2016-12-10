@@ -4,7 +4,8 @@ import {CartService} from '../services/cart.service';
 
 @Component({
     selector: 'cart',
-    template: `
+    template:
+    `
         <div class="cart">
             <h2>Carrito</h2>
             <span>{{detail.items}} articulos agregados</span>
@@ -39,4 +40,4 @@ export class CartComponent implements OnInit {
         this.courses = this.CartService.getCourses();
         this.detail = this.CartService.getDetail();
     }
-}
+};

@@ -3,18 +3,24 @@
         "id": 1,
         "name" : "Angular" ,
         "image" : "/artefactos/angularjs.png",
-        "price" : 100
+        "price" : 100,
+        "description": "Aprenderas Angular 2",
+        "instructor": "Yankarlo"
     },
     {
         "id" : 2,
         "name" : "Python",
         "image" : "/artefactos/python.png",
-        "price" : 120
+        "price" : 120,
+        "description": "Aprenderas Python",
+        "instructor": "Camilo"
     },
     {
         "id" : 3,
         "name" : "Python2",
         "image" : "/artefactos/python.png",
-        "price" : 120
+        "price" : 120,
+        "description": "Aprenderas Python 2",
+        "instructor": "Jose"
     }
 ]

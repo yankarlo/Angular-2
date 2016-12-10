@@ -9,20 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-// Importo el servicio y lo incluyo en providers
-var cart_service_1 = require('../services/cart.service');
-var AppComponent = (function () {
-    function AppComponent() {
+var WelcomeComponent = (function () {
+    function WelcomeComponent() {
     }
-    AppComponent = __decorate([
+    WelcomeComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            template: "\n    <header>\n      Cursos Platzi\n    </header>\n      <nav>\n        <a routerLink=\"\">Inicio</a>\n        <a routerLink=\"courses\">Cursos</a>\n      </nav>\n    <section>\n      <router-outlet></router-outlet>\n    </section>\n  ",
-            providers: [cart_service_1.CartService]
+            selector: 'welcome',
+            template: '<h2>BIENVENIDO A NUESTRA TIENDA</h2>'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], WelcomeComponent);
+    return WelcomeComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.WelcomeComponent = WelcomeComponent;
+//# sourceMappingURL=welcome.component.js.map
