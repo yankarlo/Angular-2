@@ -1,7 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 // se comparte componente con coursebox
 import{Course} from '../common/course';
-
+import {ApiService} from '../services/api.service';
+/*
 const COURSES: Course[] =[
  {
     id : 1,
@@ -16,7 +17,7 @@ const COURSES: Course[] =[
     price : 120
   }
 ]
-
+*/
 // En el div se emplea entre corchetes la variable definida en coursebox
 @Component({
   selector: 'courses',
@@ -29,10 +30,25 @@ const COURSES: Course[] =[
         *ngFor="let course_info of courses"
         ></coursebox>
     </div>
-  `
+  `,
+  providers: [ApiService]
 })
 
-export class CoursesComponent {
-  title: string = 'Cursos disponibles'
-  courses: Course [] = COURSES;
+export class CoursesComponent implements OnInit {
+  title: string = 'Cursos disponibles';
+  courses: Course [];
+  // courses: Course [] = COURSES;
+
+  constructor(private ApiService: ApiService) {
+
+  }
+
+  getCourses() {
+    this.ApiService.getCourses().then(
+      courses => this.courses = courses
+    )
+  } 
+  ngOnInit() { 
+    this.getCourses();
+  }
 }

@@ -9,32 +9,44 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var COURSES = [
-    {
-        id: 1,
-        name: 'Angular ',
-        image: '/artefactos/angularjs.png',
-        price: 100
-    },
-    {
-        id: 2,
-        name: 'Python',
-        image: '/artefactos/python.png',
-        price: 120
-    }
-];
+var api_service_1 = require('../services/api.service');
+/*
+const COURSES: Course[] =[
+ {
+    id : 1,
+    name : 'Angular ',
+    image : '/artefactos/angularjs.png',
+    price : 100
+  },
+  {
+    id : 2,
+    name : 'Python',
+    image : '/artefactos/python.png',
+    price : 120
+  }
+]
+*/
 // En el div se emplea entre corchetes la variable definida en coursebox
 var CoursesComponent = (function () {
-    function CoursesComponent() {
+    // courses: Course [] = COURSES;
+    function CoursesComponent(ApiService) {
+        this.ApiService = ApiService;
         this.title = 'Cursos disponibles';
-        this.courses = COURSES;
     }
+    CoursesComponent.prototype.getCourses = function () {
+        var _this = this;
+        this.ApiService.getCourses().then(function (courses) { return _this.courses = courses; });
+    };
+    CoursesComponent.prototype.ngOnInit = function () {
+        this.getCourses();
+    };
     CoursesComponent = __decorate([
         core_1.Component({
             selector: 'courses',
-            template: "\n    <h2>{{title}}</h2>\n    <div class=\"courses_list\">\n        <coursebox\n        [course]=\"course_info\"\n        *ngFor=\"let course_info of courses\"\n        ></coursebox>\n    </div>\n  "
+            template: "\n    <h2>{{title}}</h2>\n    <div class=\"courses_list\">\n        <coursebox\n        [course]=\"course_info\"\n        *ngFor=\"let course_info of courses\"\n        ></coursebox>\n    </div>\n  ",
+            providers: [api_service_1.ApiService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [api_service_1.ApiService])
     ], CoursesComponent);
     return CoursesComponent;
 }());
