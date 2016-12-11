@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 // se comparte componente con coursebox
 import{Course} from '../common/course';
 import {ApiService} from '../services/api.service';
+import {AuthService} from '../services/auth.service';
 /*
 const COURSES: Course[] =[
  {
@@ -32,7 +33,7 @@ const COURSES: Course[] =[
     </div>
     <cart></cart>
   `,
-  providers: [ApiService]
+  providers: [ApiService, AuthService]
 })
 
 export class CoursesComponent implements OnInit {
@@ -40,7 +41,7 @@ export class CoursesComponent implements OnInit {
   courses: Course [];
   // courses: Course [] = COURSES;
 
-  constructor(private ApiService: ApiService) {
+  constructor(private ApiService: ApiService, private auth: AuthService) {
 
   }
 
@@ -50,6 +51,7 @@ export class CoursesComponent implements OnInit {
     );
   }
   ngOnInit() {
+    this.auth.check();
     this.getCourses();
   }
 }

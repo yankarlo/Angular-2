@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 // Importo el servicio y lo incluyo en providers
 import {CartService} from '../services/cart.service';
+
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector : 'my-app',
@@ -8,6 +10,10 @@ import {CartService} from '../services/cart.service';
   `
     <header>
       Cursos Platzi
+      <div class="user_bar">
+        <a *ngIf="!auth.session" routerLink="login">Inciar session</a>
+        <a *ngIf="auth.session"  (click)="logout()">Salir session</a>
+      </div>
     </header>
       <nav>
         <a routerLink="">Inicio</a>
@@ -17,7 +23,21 @@ import {CartService} from '../services/cart.service';
       <router-outlet></router-outlet>
     </section>
   `,
-  providers: [CartService]
+  providers: [CartService, AuthService]
 })
 
-export class AppComponent { }
+export class AppComponent implements OnInit {
+
+    user: boolean;
+
+    constructor(private auth: AuthService) {
+
+    }
+    ngOnInit() {
+
+    }
+
+    logout() {
+      this.auth.logout();
+    }
+ }

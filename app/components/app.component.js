@@ -11,16 +11,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 // Importo el servicio y lo incluyo en providers
 var cart_service_1 = require('../services/cart.service');
+var auth_service_1 = require('../services/auth.service');
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(auth) {
+        this.auth = auth;
     }
+    AppComponent.prototype.ngOnInit = function () {
+    };
+    AppComponent.prototype.logout = function () {
+        this.auth.logout();
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n    <header>\n      Cursos Platzi\n    </header>\n      <nav>\n        <a routerLink=\"\">Inicio</a>\n        <a routerLink=\"courses\">Cursos</a>\n      </nav>\n    <section>\n      <router-outlet></router-outlet>\n    </section>\n  ",
-            providers: [cart_service_1.CartService]
+            template: "\n    <header>\n      Cursos Platzi\n      <div class=\"user_bar\">\n        <a *ngIf=\"!auth.session\" routerLink=\"login\">Inciar session</a>\n        <a *ngIf=\"auth.session\"  (click)=\"logout()\">Salir session</a>\n      </div>\n    </header>\n      <nav>\n        <a routerLink=\"\">Inicio</a>\n        <a routerLink=\"courses\">Cursos</a>\n      </nav>\n    <section>\n      <router-outlet></router-outlet>\n    </section>\n  ",
+            providers: [cart_service_1.CartService, auth_service_1.AuthService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [auth_service_1.AuthService])
     ], AppComponent);
     return AppComponent;
 }());
