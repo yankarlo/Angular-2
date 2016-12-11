@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ES2015</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <button id="boton">Click</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.1.0/rx.all.js"></script>
+
+
+<script>
+
+const button = document.getElementById("boton");
+
+        const sayhi = function() {
+          console.log("hello Word");
+        }
+        // Asigno funcion variable 
+        const Observable = Rx.Observable;
+       // Inicializo variable con para observar evento del boton
+        const clicks = Observable.fromEvent(button, 'click');
+        // Funciones con rxjs
+        const su = clicks.forEach(
+            e => {
+              console.log(e);
+              sayhi();
+              // funcion para utilizar solo una vesz la funcion
+              su.dispose();
+            },
+            error => console.log(error)
+          );
+</script>
+</body>
+</html>

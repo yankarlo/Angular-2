@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var api_service_1 = require('../services/api.service');
 var auth_service_1 = require('../services/auth.service');
+var apiobservable_1 = require('../services/apiobservable');
 /*
 const COURSES: Course[] =[
  {
@@ -30,14 +31,18 @@ const COURSES: Course[] =[
 // En el div se emplea entre corchetes la variable definida en coursebox
 var CoursesComponent = (function () {
     // courses: Course [] = COURSES;
-    function CoursesComponent(ApiService, auth) {
+    function CoursesComponent(ApiService, auth, ApiObservable) {
         this.ApiService = ApiService;
         this.auth = auth;
+        this.ApiObservable = ApiObservable;
         this.title = 'Cursos disponibles';
     }
     CoursesComponent.prototype.getCourses = function () {
+        /*this.ApiService.getCourses().then(
+          courses => this.courses = courses
+        );*/
         var _this = this;
-        this.ApiService.getCourses().then(function (courses) { return _this.courses = courses; });
+        this.ApiObservable.getCourses().subscribe(function (data) { _this.courses = data; }, function (error) { return console.log(error); });
     };
     CoursesComponent.prototype.ngOnInit = function () {
         this.auth.check();
@@ -47,9 +52,9 @@ var CoursesComponent = (function () {
         core_1.Component({
             selector: 'courses',
             template: "\n    <h2>{{title}}</h2>\n    <div class=\"courses_list\">\n        <coursebox\n        [course]=\"course_info\"\n        *ngFor=\"let course_info of courses\"\n        ></coursebox>\n    </div>\n    <cart></cart>\n  ",
-            providers: [api_service_1.ApiService, auth_service_1.AuthService]
+            providers: [api_service_1.ApiService, auth_service_1.AuthService, apiobservable_1.ApiOservable]
         }), 
-        __metadata('design:paramtypes', [api_service_1.ApiService, auth_service_1.AuthService])
+        __metadata('design:paramtypes', [api_service_1.ApiService, auth_service_1.AuthService, apiobservable_1.ApiOservable])
     ], CoursesComponent);
     return CoursesComponent;
 }());

@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import{Course} from '../common/course';
 import {ApiService} from '../services/api.service';
 import {AuthService} from '../services/auth.service';
+import {ApiOservable} from '../services/apiobservable';
 /*
 const COURSES: Course[] =[
  {
@@ -33,7 +34,7 @@ const COURSES: Course[] =[
     </div>
     <cart></cart>
   `,
-  providers: [ApiService, AuthService]
+  providers: [ApiService, AuthService, ApiOservable]
 })
 
 export class CoursesComponent implements OnInit {
@@ -41,13 +42,21 @@ export class CoursesComponent implements OnInit {
   courses: Course [];
   // courses: Course [] = COURSES;
 
-  constructor(private ApiService: ApiService, private auth: AuthService) {
+  constructor(
+    private ApiService: ApiService,
+    private auth: AuthService,
+    private ApiObservable: ApiOservable) {
 
   }
 
   getCourses() {
-    this.ApiService.getCourses().then(
+    /*this.ApiService.getCourses().then(
       courses => this.courses = courses
+    );*/
+
+    this.ApiObservable.getCourses().subscribe(
+      data => {this.courses = data; },
+      error => console.log(error)
     );
   }
   ngOnInit() {
