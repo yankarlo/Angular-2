@@ -5,4 +5,5 @@ export interface Course {
   name: string;
   image: string;
   price: number;
+  state?: string;
 }
